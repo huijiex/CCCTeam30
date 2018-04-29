@@ -9,8 +9,5 @@
         <module name="LandmarkTweets" />
       </profile>
     </annotationProcessing>
-    <bytecodeTargetLevel>
-      <module name="LandmarkTweets" target="1.5" />
-    </bytecodeTargetLevel>
   </component>
 </project>
