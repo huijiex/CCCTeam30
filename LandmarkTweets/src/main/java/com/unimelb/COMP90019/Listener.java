@@ -10,7 +10,10 @@ import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 import org.lightcouch.CouchDbClient;
 import twitter4j.*;
+
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class Listener {
@@ -26,9 +29,12 @@ public class Listener {
             if (!SearchTweets.keywordflag) {
                 try {
                     if (tweet.getGeoLocation()!= null) {
-                        Map<String, String> geoLocation = new HashMap<String, String>();
-                        geoLocation.put("type", "point");
-                        geoLocation.put("coordinates", tweet.getGeoLocation().toString());
+                        Map<String, Object> geoLocation = new HashMap<>();
+                        geoLocation.put("type", "Point");
+                        double[] geoMetry = new double[2];
+                        geoMetry[0] = tweet.getGeoLocation().getLatitude();
+                        geoMetry[1] = tweet.getGeoLocation().getLongitude();
+                        geoLocation.put("coordinates", geoMetry);
                         jsonObj.put("geo", geoLocation);
                         if (tweet.getPlace() != null) {
                             Map<String, String> place = new HashMap<String, String>();
@@ -39,27 +45,13 @@ public class Listener {
                         } else {
                             jsonObj.put("place", "null");
                         }
-                        jsonObj.put("CreatedAt", tweet.getCreatedAt());
+                        jsonObj.put("created_at", tweet.getCreatedAt());
                         jsonObj.put("text", tweet.getText());
                         jsonObj.put("_id",String.valueOf(tweet.getId()));
 
                         JSONParser jsonParser = new JSONParser();
 
                         couchDbClient.save(jsonParser.parse(jsonObj.toString()));
-                    }else{
-                        jsonObj.put("geo", "null");
-                        if (tweet.getPlace() != null) {
-                            Map<String, String> place = new HashMap<String, String>();
-                            place.put("type", "polygon");
-                            place.put("coordinates", tweet.getPlace().toString());
-                            jsonObj.put("place", place);
-
-                        } else {
-                            jsonObj.put("place", "null");
-                        }
-                        jsonObj.put("CreatedAt", tweet.getCreatedAt());
-                        jsonObj.put("text", tweet.getText());
-                        jsonObj.put("_id",String.valueOf(tweet.getId()));
                     }
                 } catch (twitter4j.JSONException e) {
                     // TODO Auto-generated catch block
@@ -67,8 +59,6 @@ public class Listener {
                 } catch (ParseException e) {
                     e.printStackTrace();
                 }
-
-                StringBuffer jsonString = new StringBuffer().append(jsonObj).append("\r\n");
                 //System.out.print(jsonString.toString());
             }
         }
