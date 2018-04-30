@@ -11,32 +11,7 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="Listener.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/unimelb/COMP90019/Listener.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state>
-              <caret line="34" column="10" lean-forward="true" selection-start-line="34" selection-start-column="10" selection-end-line="34" selection-end-column="10" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Supply.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/unimelb/COMP90019/Supply.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="22">
-              <caret line="19" column="61" lean-forward="true" selection-start-line="19" selection-start-column="61" selection-end-line="19" selection-end-column="61" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-    </leaf>
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300" />
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -58,6 +33,10 @@
         <option value="$PROJECT_DIR$/src/main/java/com/unimelb/COMP90019/Listener.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/unimelb/COMP90019/Supply.java" />
         <option value="$PROJECT_DIR$/src/main/resources/couchDbConfig.properties" />
+        <option value="$PROJECT_DIR$/src/main/java/utiltools/Supply.java" />
+        <option value="$PROJECT_DIR$/src/main/resources/aurinDBConfig.properties" />
+        <option value="$PROJECT_DIR$/src/main/java/utiltools/FileWriter.java" />
+        <option value="$PROJECT_DIR$/src/main/java/utiltools/Aurin.java" />
       </list>
     </option>
   </component>
@@ -132,6 +111,13 @@
               <item name="Root" type="cbb8eebc:String" user="Root" />
               <item name="LandmarkTweets" type="cbb8eebc:String" user="LandmarkTweets" />
               <item name="src/main" type="cbb8eebc:String" user="src/main" />
+              <item name="java" type="cbb8eebc:String" user="java" />
+              <item name="utiltools" type="cbb8eebc:String" user="utiltools" />
+            </path>
+            <path>
+              <item name="Root" type="cbb8eebc:String" user="Root" />
+              <item name="LandmarkTweets" type="cbb8eebc:String" user="LandmarkTweets" />
+              <item name="src/main" type="cbb8eebc:String" user="src/main" />
               <item name="resources" type="cbb8eebc:String" user="resources" />
             </path>
           </expand>
@@ -170,6 +156,7 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="utiltools" />
       <recent name="com.unimelb.COMP90019" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
@@ -188,14 +175,25 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Application.Supply">
+  <component name="RunManager" selected="Application.Aurin">
+    <configuration name="Aurin" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="utiltools.Aurin" />
+      <module name="LandmarkTweets" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="utiltools.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+    </configuration>
     <configuration name="SearchTweets" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.unimelb.COMP90019.SearchTweets" />
       <module name="LandmarkTweets" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="com.unimelb.COMP90019.*" />
+          <option name="PATTERN" value="utiltools.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -206,18 +204,18 @@
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="com.unimelb.COMP90019.*" />
+          <option name="PATTERN" value="utiltools.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
     </configuration>
     <configuration name="Supply" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="com.unimelb.COMP90019.Supply" />
+      <option name="MAIN_CLASS_NAME" value="utiltools.Supply" />
       <module name="LandmarkTweets" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="com.unimelb.COMP90019.*" />
+          <option name="PATTERN" value="utiltools.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -267,9 +265,11 @@
       <item itemvalue="Application.SearchTweets" />
       <item itemvalue="Application.Start" />
       <item itemvalue="Application.Supply" />
+      <item itemvalue="Application.Aurin" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.Aurin" />
         <item itemvalue="Application.Supply" />
         <item itemvalue="Application.SearchTweets" />
         <item itemvalue="Application.Start" />
@@ -294,12 +294,12 @@
       <workItem from="1525000829061" duration="4915000" />
       <workItem from="1525059666514" duration="64000" />
       <workItem from="1525060116675" duration="293000" />
-      <workItem from="1525060675345" duration="6712000" />
+      <workItem from="1525060675345" duration="12377000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="25039000" />
+    <option name="totallyTimeSpent" value="30704000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1295" height="695" extended-state="6" />
@@ -316,11 +316,11 @@
       <window_info anchor="right" id="Maven Projects" order="3" />
       <window_info anchor="bottom" id="Database Changes" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Version Control" order="7" show_stripe_button="false" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.13237925" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.66547406" />
       <window_info anchor="bottom" id="Terminal" order="7" />
       <window_info id="Capture Tool" order="2" />
       <window_info id="Designer" order="2" />
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.23319837" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.23319837" />
       <window_info id="Web" order="2" side_tool="true" />
       <window_info anchor="right" id="Database" order="3" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
@@ -468,13 +468,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/unimelb/COMP90019/OpenStreetMapUtils.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="22">
-          <caret line="15" column="13" selection-start-line="15" selection-start-column="13" selection-end-line="15" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/resources/rawTweets.json" />
     <entry file="file://$PROJECT_DIR$/src/main/java/com/unimelb/COMP90019/WriteJsonFile.java" />
     <entry file="file://$PROJECT_DIR$/src/main/java/com/unimelb/COMP90019/WriteFileThread.java" />
@@ -515,20 +508,58 @@
     <entry file="file://$PROJECT_DIR$/src/main/resources/log4j.properties">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/couchDbConfig.properties">
+    <entry file="file://$PROJECT_DIR$/src/main/java/utiltools/Supply.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="22" selection-start-column="22" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/unimelb/COMP90019/Supply.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="22">
-          <caret line="19" column="61" lean-forward="true" selection-start-line="19" selection-start-column="61" selection-end-line="19" selection-end-column="61" />
+        <state relative-caret-position="170">
+          <caret line="10" column="13" selection-start-line="10" selection-start-column="13" selection-end-line="10" selection-end-column="13" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/couchDbConfig.properties">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret selection-end-line="6" selection-end-column="25" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/utiltools/Aurin.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="49">
+          <caret line="12" column="39" selection-start-line="12" selection-start-column="39" selection-end-line="12" selection-end-column="39" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/utiltools/FileWriter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="88">
+          <caret line="14" selection-start-line="14" selection-end-line="14" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/aurinDBConfig.properties">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="132">
+          <caret line="6" column="25" lean-forward="true" selection-start-line="6" selection-start-column="25" selection-end-line="6" selection-end-column="25" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://D:/Java/jdk1.8.0_111/src.zip!/java/net/HttpURLConnection.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="330">
+          <caret line="68" column="22" selection-start-line="68" selection-start-column="22" selection-end-line="68" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/unimelb/COMP90019/OpenStreetMapUtils.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="440">
+          <caret line="33" column="19" selection-start-line="33" selection-start-column="19" selection-end-line="33" selection-end-column="19" />
         </state>
       </provider>
     </entry>
