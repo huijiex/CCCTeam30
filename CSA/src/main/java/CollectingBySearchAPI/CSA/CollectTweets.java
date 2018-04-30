@@ -1,4 +1,5 @@
 package CollectingBySearchAPI.CSA;
+import org.lightcouch.CouchDbClient;
 import twitter4j.*;
 
 import java.util.HashMap;
@@ -13,6 +14,8 @@ public class CollectTweets {
 		// TODO Auto-generated method stub
 		 GeoLocation location = new GeoLocation(-37.814,144.96332); 
 		 Twitter twitter = new TwitterFactory().getInstance();
+		 String couchDbProperties = "couchDbConfig.properties";
+		CouchDbClient couchDbClient = new CouchDbClient(couchDbProperties);
 		 try {
 	            Query query = new Query("hi");
 	            QueryResult result;
@@ -48,7 +51,8 @@ public class CollectTweets {
 		                            jsonObj.put("_id",String.valueOf(tweet.getId()));
 
 		                            JSONParser jsonParser = new JSONParser();
-		                            
+
+		                            couchDbClient.save(jsonObj);
 		                            //Add to CouchDB Here
 		                			//System.out.println("inner tweets: @" + innertweet.getUser().getScreenName() + " - " + innertweet.getText()+" id - "+innertweet.getId());
 		                		}
@@ -83,6 +87,8 @@ public class CollectTweets {
 	                            jsonObj.put("_id",String.valueOf(tweet.getId()));
 
 	                            JSONParser jsonParser = new JSONParser();
+
+	                            couchDbClient.save(jsonObj);
 	                            
 	                          //Add to CouchDB Here
 	                			//System.out.println("inner tweets: @" + innertweet.getUser().getScreenName() + " - " + innertweet.getText()+" id - "+innertweet.getId());
