@@ -20,8 +20,8 @@ public class Supply {
     private static BigDecimal ymin = new BigDecimal(-38.5185);
     private static BigDecimal ymax = new BigDecimal(-37.1542);
 
-    private static int start = 0;
-    private static int end = 2000;
+    private static int start = 2001;
+    private static int end = 5000;
 
     public static void main(String[] args) throws IOException {
         CouchDbClient couchDbClient = new CouchDbClient(dbConfig);
