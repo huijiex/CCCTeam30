@@ -25,10 +25,17 @@ public class SearchTweets {
 //
 //        Twitter twitter = new TwitterFactory().getInstance();
         ConfigurationBuilder cb = new ConfigurationBuilder();
-        cb.setOAuthConsumerKey("0kzHxdlmuE3RNu8YUL7wOYklG");
+        /*cb.setOAuthConsumerKey("0kzHxdlmuE3RNu8YUL7wOYklG");
         cb.setOAuthConsumerSecret("Q0fV8FnECFkhHN8pZgxyKGX2YDtrxtoKtsbHpFUsr1fuk65MRz");
         cb.setOAuthAccessToken("970228986386137088-eWp1RptsUuP996GcZYrmBt27RGdHlvr");
-        cb.setOAuthAccessTokenSecret("qQKUvq4CLxCfrRHsLzJOLmkhb6gDQvc6k5qHiGBRHhcGU");
+        cb.setOAuthAccessTokenSecret("qQKUvq4CLxCfrRHsLzJOLmkhb6gDQvc6k5qHiGBRHhcGU");*/
+
+        cb.setOAuthConsumerKey("TwRuKCE3rpe8xDy19NaTVwL5g");
+        cb.setOAuthConsumerSecret("iu5mCl1yfTPaTVpsh1JneyrdrCpTyz8rtLqMpO0j1SQ7KfR3mY");
+        cb.setOAuthAccessToken("970215325676462080-sLkH8A1U1fi3fuAF8B9r4vqCuQF9nTx");
+        cb.setOAuthAccessTokenSecret("pq0NqvFWoKLkQwMUkiXcKyyY1gCmj02tUAtz1KNIeJjZV");
+
+
         TwitterStream twitterStream = new TwitterStreamFactory(cb.build()).getInstance();
         twitterStream.addListener(Listener.listener);
 
