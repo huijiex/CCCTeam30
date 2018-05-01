@@ -5,14 +5,22 @@ import twitter4j.*;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.TimeUnit;
 
 import org.json.simple.parser.JSONParser;
 
 public class CollectTweets {
 	static JSONObject jsonObj;
+	private static CollectingClass c =new CollectingClass();
 	public static void main(String[] args) throws JSONException {
+		ScheduledExecutorService scheduledThreadPool = Executors.newScheduledThreadPool(1);
+		scheduledThreadPool.scheduleAtFixedRate(c,(long)1.0, (long) 1.0,TimeUnit.HOURS);
+		//scheduledThreadPool.schedule(c,(long)1.0,TimeUnit.SECONDS);
 		// TODO Auto-generated method stub
-		 GeoLocation location = new GeoLocation(-37.814,144.96332); 
+		
+		/* GeoLocation location = new GeoLocation(-37.814,144.96332); 
 		 Twitter twitter = new TwitterFactory().getInstance();
 		 String couchDbProperties = "couchDbConfig.properties";
 		CouchDbClient couchDbClient = new CouchDbClient(couchDbProperties);
@@ -28,8 +36,8 @@ public class CollectTweets {
 	                		Map<String, Object> geoLocation = new HashMap<String, Object>();
                             geoLocation.put("type", "Point");
                             double[] geoMetry = new double[2];
-                            geoMetry[0] = tweet.getGeoLocation().getLatitude();
-                            geoMetry[1] = tweet.getGeoLocation().getLongitude();
+                            geoMetry[0] = tweet.getGeoLocation().getLongitude();
+                            geoMetry[1] = tweet.getGeoLocation().getLatitude();
                             geoLocation.put("coordinates", geoMetry);
                             jsonObj.put("geo", geoLocation);
                             if (tweet.getPlace() != null) {
@@ -48,7 +56,12 @@ public class CollectTweets {
                             JSONParser jsonParser = new JSONParser();
                             couchDbClient.save(jsonObj);
 	                		//System.out.println("@ "+tweet.getUser().getScreenName() + " - " + tweet.getText()+" id - "+tweet.getId()+" GeoLocation: "+tweet.getGeoLocation());
+	                		System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!"+String.valueOf(jsonObj));
+	                	    
 	                	}
+	                	
+	                	System.out.println("@ "+tweet.getUser().getScreenName() + " - " + tweet.getText()+" id - "+tweet.getId()+" GeoLocation: "+tweet.getGeoLocation());
+	                	
 	                	 }
 	            } while ((query = result.nextQuery()) != null);
 	            System.exit(0);
@@ -56,7 +69,7 @@ public class CollectTweets {
 	            te.printStackTrace();
 	            System.out.println("Failed to search tweets: " + te.getMessage());
 	            System.exit(-1);
-	        }
+	        }*/
 	}
 
 }
