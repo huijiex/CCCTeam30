@@ -17,88 +17,39 @@ public class CollectTweets {
 		 String couchDbProperties = "couchDbConfig.properties";
 		CouchDbClient couchDbClient = new CouchDbClient(couchDbProperties);
 		 try {
-	            Query query = new Query("hi");
+	            Query query = new Query();
 	            QueryResult result;
+	            query.setGeoCode(location, 10.00, Query.KILOMETERS);//Search for the tweets whose user's profile location is near Melbourne
 	            do {
 	                result = twitter.search(query);
 	                List<Status> tweets = result.getTweets();
 	                for (Status tweet : tweets) {
-	                	if(tweet.getPlace()!=null) {
-	                		if(tweet.getPlace().getName().equals("Melbourne")) {
-	                			query.geoCode(location, 1000, tweet.getUser().getScreenName());
-		                	    QueryResult innerresult= twitter.search(query);
-		                	    List<Status> innertweets = innerresult.getTweets();
-		                	    for(Status innertweet : innertweets) {
-		                		if(tweet.getGeoLocation()!= null) {
-		                			Map<String, Object> geoLocation = new HashMap<String, Object>();
-		                            geoLocation.put("type", "Point");
-		                            double[] geoMetry = new double[2];
-		                            geoMetry[0] = tweet.getGeoLocation().getLatitude();
-		                            geoMetry[1] = tweet.getGeoLocation().getLongitude();
-		                            geoLocation.put("coordinates", geoMetry);
-		                            jsonObj.put("geo", geoLocation);
-		                            if (tweet.getPlace() != null) {
-		                                Map<String, String> place = new HashMap<String, String>();
-		                                place.put("type", "polygon");
-		                                place.put("coordinates", tweet.getPlace().toString());
-		                                jsonObj.put("place", place);
+	                	if(tweet.getGeoLocation()!=null) {
+	                		Map<String, Object> geoLocation = new HashMap<String, Object>();
+                            geoLocation.put("type", "Point");
+                            double[] geoMetry = new double[2];
+                            geoMetry[0] = tweet.getGeoLocation().getLatitude();
+                            geoMetry[1] = tweet.getGeoLocation().getLongitude();
+                            geoLocation.put("coordinates", geoMetry);
+                            jsonObj.put("geo", geoLocation);
+                            if (tweet.getPlace() != null) {
+                                Map<String, String> place = new HashMap<String, String>();
+                                place.put("type", "polygon");
+                                place.put("coordinates", tweet.getPlace().toString());
+                                jsonObj.put("place", place);
 
-		                            } else {
-		                                jsonObj.put("place", "null");
-		                            }
-		                            jsonObj.put("created_at", tweet.getCreatedAt());
-		                            jsonObj.put("text", tweet.getText());
-		                            jsonObj.put("_id",String.valueOf(tweet.getId()));
+                            } else {
+                                jsonObj.put("place", "null");
+                            }
+                            jsonObj.put("created_at", tweet.getCreatedAt());
+                            jsonObj.put("text", tweet.getText());
+                            jsonObj.put("_id",String.valueOf(tweet.getId()));
 
-		                            JSONParser jsonParser = new JSONParser();
-
-		                            couchDbClient.save(jsonObj);
-		                            //Add to CouchDB Here
-		                			//System.out.println("inner tweets: @" + innertweet.getUser().getScreenName() + " - " + innertweet.getText()+" id - "+innertweet.getId());
-		                		}
-	                		}
+                            JSONParser jsonParser = new JSONParser();
+                            couchDbClient.save(jsonObj);
+	                		//System.out.println("@ "+tweet.getUser().getScreenName() + " - " + tweet.getText()+" id - "+tweet.getId()+" GeoLocation: "+tweet.getGeoLocation());
 	                	}
-	                	}
-	                	else if(tweet.getGeoLocation()!=null) {
-	                		if((-44<tweet.getGeoLocation().getLatitude()&&tweet.getGeoLocation().getLatitude()<-10&&112<tweet.getGeoLocation().getLongitude()&&tweet.getGeoLocation().getLongitude()<154)) {
-	                		query.geoCode(location, 1000, tweet.getUser().getScreenName());
-	                	    QueryResult innerresult= twitter.search(query);
-	                	    List<Status> innertweets = innerresult.getTweets();
-	                	    for(Status innertweet : innertweets) {
-	                		if(tweet.getGeoLocation()!= null) {
-	                			Map<String, Object> geoLocation = new HashMap<String, Object>();
-	                            geoLocation.put("type", "Point");
-	                            double[] geoMetry = new double[2];
-	                            geoMetry[0] = tweet.getGeoLocation().getLatitude();
-	                            geoMetry[1] = tweet.getGeoLocation().getLongitude();
-	                            geoLocation.put("coordinates", geoMetry);
-	                            jsonObj.put("geo", geoLocation);
-	                            if (tweet.getPlace() != null) {
-	                                Map<String, String> place = new HashMap<String, String>();
-	                                place.put("type", "polygon");
-	                                place.put("coordinates", tweet.getPlace().toString());
-	                                jsonObj.put("place", place);
-
-	                            } else {
-	                                jsonObj.put("place", "null");
-	                            }
-	                            jsonObj.put("created_at", tweet.getCreatedAt());
-	                            jsonObj.put("text", tweet.getText());
-	                            jsonObj.put("_id",String.valueOf(tweet.getId()));
-
-	                            JSONParser jsonParser = new JSONParser();
-
-	                            couchDbClient.save(jsonObj);
-	                            
-	                          //Add to CouchDB Here
-	                			//System.out.println("inner tweets: @" + innertweet.getUser().getScreenName() + " - " + innertweet.getText()+" id - "+innertweet.getId());
-	                		}
-	                	}
-	                	}
-	                	}
-	                		//System.out.println("Outer Tweets: @" + tweet.getUser().getScreenName() + " - " + tweet.getText()+" id - "+tweet.getId()+" GeoLocation: "+tweet.getGeoLocation());
-	                	//}
-	                }
+	                	 }
 	            } while ((query = result.nextQuery()) != null);
 	            System.exit(0);
 	        } catch (TwitterException te) {
