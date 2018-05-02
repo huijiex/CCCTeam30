@@ -71,6 +71,23 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="PackagesPane">
+        <subPane>
+          <expand>
+            <path>
+              <item name="LandmarkTweets" type="58d84e3e:PackageViewProjectNode" />
+              <item name="LandmarkTweets" type="616d4139:PackageViewModuleNode" />
+            </path>
+            <path>
+              <item name="LandmarkTweets" type="58d84e3e:PackageViewProjectNode" />
+              <item name="LandmarkTweets" type="616d4139:PackageViewModuleNode" />
+              <item name="com.unimelb.COMP90019" type="1f31426a:PackageElementNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
+      <pane id="AndroidView" />
       <pane id="Scope">
         <subPane subId="Project Files">
           <expand>
@@ -104,23 +121,6 @@
           <select />
         </subPane>
       </pane>
-      <pane id="PackagesPane">
-        <subPane>
-          <expand>
-            <path>
-              <item name="LandmarkTweets" type="58d84e3e:PackageViewProjectNode" />
-              <item name="LandmarkTweets" type="616d4139:PackageViewModuleNode" />
-            </path>
-            <path>
-              <item name="LandmarkTweets" type="58d84e3e:PackageViewProjectNode" />
-              <item name="LandmarkTweets" type="616d4139:PackageViewModuleNode" />
-              <item name="com.unimelb.COMP90019" type="1f31426a:PackageElementNode" />
-            </path>
-          </expand>
-          <select />
-        </subPane>
-      </pane>
-      <pane id="AndroidView" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -288,11 +288,13 @@
       <workItem from="1525157146945" duration="17000" />
       <workItem from="1525157173683" duration="237000" />
       <workItem from="1525157456675" duration="78000" />
+      <workItem from="1525157569098" duration="58000" />
+      <workItem from="1525157638168" duration="324000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="52420000" />
+    <option name="totallyTimeSpent" value="52802000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1295" height="695" extended-state="6" />
@@ -310,7 +312,7 @@
       <window_info anchor="bottom" id="Terminal" order="7" />
       <window_info id="Capture Tool" order="2" />
       <window_info id="Designer" order="2" />
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.2534413" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.26153848" />
       <window_info anchor="right" id="Database" order="3" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
