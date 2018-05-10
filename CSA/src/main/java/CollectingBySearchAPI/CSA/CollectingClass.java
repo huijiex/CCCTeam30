@@ -5,11 +5,12 @@ import twitter4j.*;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import utiltools.GeoCoder;
 
 import org.json.simple.parser.JSONParser;
 
-public class CollectingClass implements Runnable {
-	private static JSONObject jsonObj;
+public class CollectingClass extends Thread {
+	private static JSONObject jsonObj =new JSONObject();
 	public void run() {
 		System.out.println("I'm Running");
 		// TODO Auto-generated method stub
@@ -32,7 +33,9 @@ public class CollectingClass implements Runnable {
                            geoMetry[0] = tweet.getGeoLocation().getLongitude();
                            geoMetry[1] = tweet.getGeoLocation().getLatitude();
                            geoLocation.put("coordinates", geoMetry);
+                           String suburb = geoCoder.getSuburbByGeometry(geoMetry);
                            jsonObj.put("geo", geoLocation);
+                           jsonObj.put("suburb",suburb);
                            if (tweet.getPlace() != null) {
                                Map<String, String> place = new HashMap<String, String>();
                                place.put("type", "polygon");

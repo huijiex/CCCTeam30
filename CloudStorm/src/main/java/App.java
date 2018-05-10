@@ -22,7 +22,7 @@ public class App {
         topologyBuilder.setBolt(COUNT_BOLT_ID,countBolt).globalGrouping(MODEL_BOLT_ID);
 
         Config config = new Config();
-        config.put("input model","E:\\WorkSpace\\CCCTeam30\\CloudStorm\\src\\main\\resources\\pre_model_29_04_2018.txt");
+        config.put("input model","src/main/resources/pre_model_29_04_2018.txt");
         config.put("keyword",keyword);
 
         localCluster.submitTopology(CLOUD_TOPOLOGY, config, topologyBuilder.createTopology());
