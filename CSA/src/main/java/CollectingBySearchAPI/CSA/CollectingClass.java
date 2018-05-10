@@ -5,7 +5,7 @@ import twitter4j.*;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import utiltools.GeoCoder;
+
 
 import org.json.simple.parser.JSONParser;
 

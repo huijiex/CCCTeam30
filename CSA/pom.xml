@@ -35,8 +35,6 @@
       <groupId>org.lightcouch</groupId>
       <artifactId>lightcouch</artifactId>
       <version>0.2.0</version>
-    </dependency>
-    <!-- https://mvnrepository.com/artifact/com.google.code.geocoder-java/geocoder-java -->
-    
+    </dependency>  
   </dependencies>
 </project>
