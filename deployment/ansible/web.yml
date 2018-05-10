@@ -1,0 +1,4 @@
+[web]
+web01 ansible_ssh_host=115.146.95.48   ansible_ssh_username=root  ansible_ssh_private_key_file=~/cloud_key.ppk  ansible_ssh_pass=115116mj
+web02 ansible_ssh_host=115.146.95.43 ansible_ssh_username=root
+ansible_ssh_private_key_file=~/Nectar_Key.ppk  ansible_ssh_pass=cloud2018
