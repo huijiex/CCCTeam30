@@ -15,10 +15,19 @@ import java.util.Map;
 public class CountBolt extends BaseRichBolt {
     private JsonParser jsonParser;
     private String foodDbConfig = "foodDbConfig.properties";
-    private CouchDbClient dbClient;
+    private String beautyDbConfig = "beautyDbConfig.properties";
+    private String veggiesDbConfig = "veggiesDbConfig.properties";
+    private CouchDbClient foodDbClient;
+    private CouchDbClient veggiesDbClient;
+    private CouchDbClient beautyDbClient;
+    private final String FOOD_STREAM = "food stream";
+    private final String BEAUTY_STREAM = "beauty stream";
+    private final String VEGGIES_STREAM = "veggies stream";
 
     public void prepare(Map map, TopologyContext topologyContext, OutputCollector outputCollector) {
-        this.dbClient = new CouchDbClient(this.foodDbConfig);
+        this.foodDbClient = new CouchDbClient(this.foodDbConfig);
+        this.beautyDbClient = new CouchDbClient(this.beautyDbConfig);
+        this.veggiesDbClient = new CouchDbClient(this.veggiesDbConfig);
         this.jsonParser = new JsonParser();
     }
 
@@ -26,31 +35,86 @@ public class CountBolt extends BaseRichBolt {
         JsonObject tweet = jsonParser.parse(tuple.getStringByField("on-topic tweet")).getAsJsonObject();
         String sub = tweet.get("suburb").getAsString().replaceAll(" ","_");
 
-        if(this.dbClient.contains(sub)){
-            //find and update
-            InputStream in = this.dbClient.find(sub);
-            InputStreamReader reader = new InputStreamReader(in);
-            JsonObject oldValue = jsonParser.parse(reader).getAsJsonObject();
-            int count = oldValue.get("count").getAsInt();
-            JsonObject newValue = new JsonObject();
-            newValue.addProperty("_id",sub);
-            newValue.addProperty("_rev",oldValue.get("_rev").getAsString());
-            newValue.addProperty("count",(count+1));
-            this.dbClient.update(newValue);
-            return;
-
-        }else{
-            //save
-            JsonObject jsonResult = new JsonObject();
-            jsonResult.addProperty("_id",sub);
-            jsonResult.addProperty("count",1);
-            try{
-                this.dbClient.save(jsonResult);
-            } catch (DocumentConflictException e){
+        if(tuple.getSourceStreamId().equals(FOOD_STREAM)){
+            if(this.foodDbClient.contains(sub)){
+                //find and update
+                InputStream in = this.foodDbClient.find(sub);
+                InputStreamReader reader = new InputStreamReader(in);
+                JsonObject oldValue = jsonParser.parse(reader).getAsJsonObject();
+                int count = oldValue.get("count").getAsInt();
+                JsonObject newValue = new JsonObject();
+                newValue.addProperty("_id",sub);
+                newValue.addProperty("_rev",oldValue.get("_rev").getAsString());
+                newValue.addProperty("count",(count+1));
+                this.foodDbClient.update(newValue);
                 return;
-            }
 
+            }else{
+                //save
+                JsonObject jsonResult = new JsonObject();
+                jsonResult.addProperty("_id",sub);
+                jsonResult.addProperty("count",1);
+                try{
+                    this.foodDbClient.save(jsonResult);
+                } catch (DocumentConflictException e){
+                    return;
+                }
+
+            }
+        }else if(tuple.getSourceStreamId().equals(BEAUTY_STREAM)){
+            if(this.beautyDbClient.contains(sub)){
+                //find and update
+                InputStream in = this.beautyDbClient.find(sub);
+                InputStreamReader reader = new InputStreamReader(in);
+                JsonObject oldValue = jsonParser.parse(reader).getAsJsonObject();
+                int count = oldValue.get("count").getAsInt();
+                JsonObject newValue = new JsonObject();
+                newValue.addProperty("_id",sub);
+                newValue.addProperty("_rev",oldValue.get("_rev").getAsString());
+                newValue.addProperty("count",(count+1));
+                this.beautyDbClient.update(newValue);
+                return;
+
+            }else{
+                //save
+                JsonObject jsonResult = new JsonObject();
+                jsonResult.addProperty("_id",sub);
+                jsonResult.addProperty("count",1);
+                try{
+                    this.beautyDbClient.save(jsonResult);
+                } catch (DocumentConflictException e){
+                    return;
+                }
+
+            }
+        } else if(tuple.getSourceStreamId().equals(VEGGIES_STREAM)){
+            if(this.veggiesDbClient.contains(sub)){
+                //find and update
+                InputStream in = this.veggiesDbClient.find(sub);
+                InputStreamReader reader = new InputStreamReader(in);
+                JsonObject oldValue = jsonParser.parse(reader).getAsJsonObject();
+                int count = oldValue.get("count").getAsInt();
+                JsonObject newValue = new JsonObject();
+                newValue.addProperty("_id",sub);
+                newValue.addProperty("_rev",oldValue.get("_rev").getAsString());
+                newValue.addProperty("count",(count+1));
+                this.veggiesDbClient.update(newValue);
+                return;
+
+            }else{
+                //save
+                JsonObject jsonResult = new JsonObject();
+                jsonResult.addProperty("_id",sub);
+                jsonResult.addProperty("count",1);
+                try{
+                    this.veggiesDbClient.save(jsonResult);
+                } catch (DocumentConflictException e){
+                    return;
+                }
+
+            }
         }
+
 
     }
 

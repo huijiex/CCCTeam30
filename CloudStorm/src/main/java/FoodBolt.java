@@ -13,13 +13,14 @@ import org.deeplearning4j.models.word2vec.Word2Vec;
 import java.util.List;
 import java.util.Map;
 
-public class ModelBolt extends BaseRichBolt {
+public class FoodBolt extends BaseRichBolt {
     private String inputModel;
     private String keyword;
     private Word2Vec vec;
     private List<String> seeds;
     private JsonParser jsonParser;
     private OutputCollector collector;
+    public final String FOOD_STREAM = "food stream";
 
     public void prepare(Map map, TopologyContext topologyContext, OutputCollector outputCollector) {
         this.inputModel = (String) map.get("input model");
@@ -38,7 +39,7 @@ public class ModelBolt extends BaseRichBolt {
         String text = normalizeText(tweet.get("text").getAsString());
         for(String seed:seeds){
             if(text.contains(seed)||text.contains(seed.replaceAll("_"," "))){
-                this.collector.emit(new Values(raw));
+                this.collector.emit(FOOD_STREAM, new Values(raw));
                 return;
             }
         }
@@ -53,6 +54,6 @@ public class ModelBolt extends BaseRichBolt {
     }
 
     public void declareOutputFields(OutputFieldsDeclarer outputFieldsDeclarer) {
-        outputFieldsDeclarer.declare(new Fields("on-topic tweet"));
+        outputFieldsDeclarer.declareStream(FOOD_STREAM, new Fields("on-topic tweet"));
     }
 }

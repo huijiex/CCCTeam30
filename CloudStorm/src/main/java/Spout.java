@@ -30,8 +30,13 @@ public class Spout extends BaseRichSpout {
         while(this.changes.hasNext()){
             ChangesResult.Row feed = this.changes.next();
             JsonObject doc = feed.getDoc();
-            System.out.println(doc.toString());
-            this.collector.emit(new Values(doc.toString()));
+            //System.out.println(doc.toString());
+            if((!doc.has("text"))||(!doc.has("suburb"))){
+                continue;
+            }else {
+                this.collector.emit(new Values(doc.toString()));
+            }
+
         }
 
     }
